@@ -51,7 +51,8 @@ export async function POST(request: NextRequest) {
                 _id: existingUser._id,
                 userName: `${existingUser.firstName} ${existingUser.lastName}`,
                 email: existingUser.email,
-                role: existingUser.role
+                role: existingUser.role,
+                tokenVersion: existingUser.tokenVersion
             },
             process.env.TOKEN_SECRET!,
 

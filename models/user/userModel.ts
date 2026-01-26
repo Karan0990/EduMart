@@ -78,8 +78,6 @@ const userSchema = new Schema({
     resetPasswordExpire: { type: String },
 
 
-
-
 }, { timestamps: true });
 
 const User =

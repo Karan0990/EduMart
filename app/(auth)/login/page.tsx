@@ -12,13 +12,19 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import axios from "axios"
 import toast from "react-hot-toast"
 
 export default function LoginPage() {
 
     const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+
+    const currentUrl =
+        pathname + (searchParams.toString() ? `?${searchParams}` : '')
+
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -32,7 +38,7 @@ export default function LoginPage() {
             if (response.data.success == true) {
                 console.log("Login Successful", response.data)
                 toast.success("Login Successful")
-                router.push(`/login?redirect=${encodeURIComponent(window.location.pathname)}`)
+                router.push(`/login?redirect=${encodeURIComponent(currentUrl)}`)
             }
 
         } catch (error: any) {

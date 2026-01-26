@@ -17,6 +17,8 @@ export function Navbar() {
     const [searchFocused, setSearchFocused] = useState(false)
     const [isloggedIn, setIsloggedIn] = useState(false)
     const [cartitemscount, setCartitemscount] = useState(0)
+    const [authLoading, setAuthLoading] = useState(true)
+
     const router = useRouter()
 
     useEffect(() => {
@@ -44,9 +46,11 @@ export function Navbar() {
                 }
 
             } catch (error: any) {
+                setIsloggedIn(false)
                 console.log("Error fetching user data:", error.message);
+            } finally {
+                setAuthLoading(false)
             }
-
         }
 
         getData()
@@ -112,7 +116,7 @@ export function Navbar() {
                     </div>
 
                     {/* Icons */}
-                    {isloggedIn ? (
+                    {authLoading ? null : isloggedIn ? (
 
                         <div className="flex items-center gap-2">
                             <Link href="/profile">

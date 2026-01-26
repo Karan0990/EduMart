@@ -17,7 +17,7 @@ export default async function resetEmail({
   userName: string
   token: string
 }) {
-  const resetLink = `http://localhost:3000/reset-password/${token}`
+  const resetLink = `${process.env.DOMAIN || "http://localhost:3000"}/reset-password/${token}`
 
   const info = await transporter.sendMail({
     from: `"Admin Team" <${process.env.EMAIL_USER}>`,

@@ -31,6 +31,11 @@ export default function ProductDetailPage({
     const [quantity, setQuantity] = useState(1)
     const [selectedImage, setSelectedImage] = useState(0)
     const [addedToCart, setAddedToCart] = useState(false)
+    const [reviewRefreshKey, setReviewRefreshKey] = useState(0)
+
+    const handleReviewSubmitted = () => {
+        setReviewRefreshKey(prev => prev + 1)
+    }
 
 
     useEffect(() => {
@@ -256,7 +261,7 @@ export default function ProductDetailPage({
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <div className="lg:col-span-1">
-                            <ReviewForm productId={product._id} userHasReviewed={false} />
+                            <ReviewForm productId={product._id} userHasReviewed={false} onReviewSubmitted={handleReviewSubmitted} />
                         </div>
 
                         <div className="lg:col-span-2">
@@ -265,7 +270,7 @@ export default function ProductDetailPage({
                                     <h3 className="text-lg font-semibold mb-4">
                                         {product.totalRatings} Reviews
                                     </h3>
-                                    <ReviewList productId={product._id} />
+                                    <ReviewList productId={product._id} key={reviewRefreshKey} />
                                 </>
                             ) : (
                                 <div className="text-center py-8 bg-muted/30 rounded-lg">

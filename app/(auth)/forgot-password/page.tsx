@@ -13,11 +13,14 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
 
 export default function ForgotPasswordPage() {
     const [email, setEmail] = useState('')
     const [emailSent, setEmailSent] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+
+    const router = useRouter()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -160,7 +163,7 @@ export default function ForgotPasswordPage() {
                                             variant="outline"
                                             className="w-full bg-transparent"
                                             onClick={() => {
-                                                // Navigate to login
+                                                router.push("/login")
                                             }}
                                         >
                                             Back to Login

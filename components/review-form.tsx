@@ -11,19 +11,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { motion } from 'framer-motion'
 import { Check, AlertCircle, Loader2 } from 'lucide-react'
 import axios from "axios"
+import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
 
 interface ReviewFormProps {
     productId: string
     userHasReviewed?: boolean
+    onReviewSubmitted: () => void
 }
 
-export function ReviewForm({ productId, userHasReviewed = false }: ReviewFormProps) {
+export function ReviewForm({ productId, userHasReviewed = false, onReviewSubmitted }: ReviewFormProps) {
     const [rating, setRating] = useState(0)
     const [text, setText] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
     const [errorMessage, setErrorMessage] = useState('')
+
+    const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -54,6 +58,7 @@ export function ReviewForm({ productId, userHasReviewed = false }: ReviewFormPro
                 setRating(0)
                 setText('')
                 setTimeout(() => setStatus('idle'), 3000)
+                onReviewSubmitted()
             }
 
         } catch (error) {
