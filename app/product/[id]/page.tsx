@@ -28,6 +28,7 @@ export default function ProductDetailPage({
     const router = useRouter()
     const [loading, setLoading] = useState(true)
     const [product, setProduct] = useState<any>(null)
+    const [loggedIn, setLoggedIn] = useState(false)
     const [quantity, setQuantity] = useState(1)
     const [selectedImage, setSelectedImage] = useState(0)
     const [addedToCart, setAddedToCart] = useState(false)
@@ -41,29 +42,46 @@ export default function ProductDetailPage({
     useEffect(() => {
         async function getData() {
             try {
-                const res = await axios.get(`/api/product/productDetails/${id}`)
-                if (res.data.success) {
-                    setProduct(res.data.product)
-                }
 
-                const cartRes = await axios.get("/api/cart/showCart")
+                const res = await axios.get(`/api/product/productDetails/${id}`);
+                if (res.data.success) {
+                    setProduct(res.data.product);
+                }
+            } catch (error) {
+                console.error("Unable to find product", error);
+            }
+
+
+            try {
+                await axios.get("/api/user/userProfile", {
+                    withCredentials: true,
+                });
+                setLoggedIn(true);
+
+
+                const cartRes = await axios.get("/api/cart/showCart", {
+                    withCredentials: true,
+                });
 
                 const existsInCart = cartRes.data.cart?.items?.some(
                     (item: any) => item.productId._id === id
-                )
+                );
 
-                setAddedToCart(Boolean(existsInCart))
-
-
-            } catch (error) {
-                console.error("Unable to find product", error)
+                setAddedToCart(Boolean(existsInCart));
+            } catch (error: any) {
+                if (error.response?.status === 401) {
+                    setLoggedIn(false);
+                } else {
+                    console.error("Unexpected auth/cart error", error);
+                }
             } finally {
-                setLoading(false)
+                setLoading(false);
             }
         }
 
-        getData()
-    }, [id])
+        getData();
+    }, [id]);
+
 
     const productAddToCart = async () => {
 
@@ -218,7 +236,7 @@ export default function ProductDetailPage({
                                         <Button
                                             size="lg"
                                             className="w-full sm:w-auto"
-                                            onClick={productAddToCart}
+                                            onClick={loggedIn ? productAddToCart : () => router.push("/login")}
                                             disabled={product.stock === 0}
                                         >
                                             <ShoppingCart className="mr-2 h-5 w-5" />
