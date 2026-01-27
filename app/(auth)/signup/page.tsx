@@ -146,11 +146,13 @@ export default function SignupPage() {
                                                 ))}
                                             </SelectContent>
                                         </Select>
+
                                         <Input
                                             id="number"
                                             name="number"
                                             type="tel"
                                             placeholder="9876543210"
+                                            maxLength={formData.isdCode === "+91" ? 10 : undefined}
                                             value={formData.number}
                                             onChange={handleChange}
                                             className={`flex-1 ${errors.number ? "border-destructive" : ""}`}
