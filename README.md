@@ -1,36 +1,148 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📚 EduMart – Stationery E-Commerce Platform
 
-## Getting Started
+EduMart is a modern **full-stack e-commerce stationery store** designed to deliver a seamless shopping experience for users while providing powerful management tools for administrators.
 
-First, run the development server:
+The platform enables customers to browse and purchase stationery products, manage accounts, and leave reviews, while the integrated admin portal allows efficient store operations including product management, order tracking, and earnings analysis.
+
+---
+
+## 🚀 **Live Demo**
+🔗 **Deployed on Vercel:**  
+https://edu-mart-six.vercel.app
+
+---
+
+## ✨ **Features**
+
+### 👤 User Features
+- 🔐 Secure authentication using JWT  
+- 🛒 Add products to cart and place orders  
+- ⭐ Review and rate products  
+- 🔑 Change password and recover forgotten passwords via email  
+- 📦 Track order details and status  
+- 👤 User account management  
+
+### 🛠️ Admin Portal
+- ➕ Add new products  
+- ❌ Delete existing products  
+- 🔄 Update order status  
+- 📊 Analyze store earnings  
+- 📦 Manage customer orders  
+
+---
+
+## 🧠 **Database Models**
+
+The application is structured around the following core models:
+
+- **User** – Authentication, profile data, and account security  
+- **Product** – Product details, pricing, and media  
+- **Cart** – Items selected before checkout  
+- **Order** – Purchase tracking, payment info, and delivery status  
+
+---
+
+## ⚙️ **Tech Stack**
+
+### 🎨 Frontend
+- **Next.js**  
+- **TypeScript**  
+- **Tailwind CSS**  
+- **Vercel AI** – Enhanced frontend development efficiency  
+
+### 🔧 Backend & Services
+- **JWT Authentication** – Secure login system  
+- **Nodemailer** – Email-based password recovery  
+- **Cloudinary** – Image storage and optimization  
+
+### ☁️ Deployment
+- **Vercel** – Fast and reliable hosting platform  
+
+---
+
+## 🔐 **Authentication Flow**
+- ✅ Secure signup and login with JWT  
+- ✅ Email-based password recovery  
+- ✅ Protected admin routes  
+- ✅ Encrypted user credentials  
+
+---
+
+## 📈 **Key Highlights**
+- ✅ Full-stack production-ready application  
+- ✅ Secure authentication architecture  
+- ✅ Admin analytics dashboard  
+- ✅ Clean and responsive user interface  
+- ✅ Scalable system design  
+- ✅ Cloud-based media handling  
+
+---
+
+## 🏗️ **Installation & Setup**
 
 ```bash
+# Clone the repository
+git clone https://github.com/your-username/edumart.git
+
+# Navigate into the project
+cd edumart
+
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔑 **Environment Variables**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a .env.local file in the root directory and configure the following:
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+# 🗄️ Database
+MONGO_URI=your_mongodb_connection_string
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 🔐 Authentication
+TOKEN_SECRET=your_jwt_secret
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# ☁️ Cloudinary
+CLOUD_NAME=your_cloudinary_name
+CLOUD_API_KEY=your_cloudinary_api_key
+CLOUD_API_SECRET=your_cloudinary_secret
 
-## Deploy on Vercel
+# 💳 Razorpay
+RAZORPAY_KEY_ID=your_razorpay_key
+RAZORPAY_KEY_SECRET=your_razorpay_secret
+NEXT_PUBLIC_RAZORPAY_KEY=your_public_razorpay_key
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 🌐 Public Cloudinary Config
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 📧 Email Service
+EMAIL_USER=your_email_address
+EMAIL_PASSWORD=your_email_password
+
+# 🔗 Domain
+DOMAIN=your_domain_url
+
+```
+
+---
+
+
+## 🎯 **Future Improvements**
+
+📱 Further mobile and tablet optimizations
+
+🤖 AI-based product recommendations
+
+🚚 Real-time delivery tracking
+
+---
+
+## 👨‍💻 **Author**
+Karan Kapoor
+🚀 Full-Stack Developer | Next.js | TypeScript | Scalable Web Applications
