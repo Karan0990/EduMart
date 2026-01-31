@@ -18,8 +18,12 @@ export async function GET(request: NextRequest) {
             });
         }
 
+        const length = products.length;
+
         return NextResponse.json({
             products,
+            totalProducts: length,
+            message: "Products fetched successfully",
             success: true
         })
 

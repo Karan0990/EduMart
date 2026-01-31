@@ -1,8 +1,8 @@
 "use client"
 
-import { motion } from "framer-motion"
+import motion from "framer-motion"
 import { Card } from "@/components/ui/card"
-import { Package, ShoppingCart, TrendingUp, Users } from "lucide-react"
+import { Box, ShoppingCart, TrendingUp, Users } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -11,10 +11,17 @@ import axios from "axios"
 
 export default function AdminDashboard() {
     const [orders, setOrders] = useState<any[]>([])
+    const [totalProducts, setTotalProducts] = useState<number>(0)
 
     useEffect(() => {
         async function getData() {
             const response = await axios.get("/api/admin/order/showAllOrders")
+
+            const ProductsResponse = await axios.get("/api/admin/product/showAllProducts")
+            if (ProductsResponse?.data?.success) {
+                setTotalProducts(ProductsResponse.data.totalProducts)
+            }
+
             if (response?.data?.success) {
                 setOrders(response.data.orders)
             }
@@ -58,8 +65,8 @@ export default function AdminDashboard() {
         },
         {
             name: "Total Products",
-            value: "—",
-            icon: Package,
+            value: totalProducts,
+            icon: Box,
             color: "text-purple-600",
             bgColor: "bg-purple-100 dark:bg-purple-900/20",
         },
