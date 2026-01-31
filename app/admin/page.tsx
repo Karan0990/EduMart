@@ -17,7 +17,7 @@ export default function AdminDashboard() {
         async function getData() {
             const response = await axios.get("/api/admin/order/showAllOrders")
 
-            const ProductsResponse = await axios.get("/api/admin/product/showAllProducts")
+            const ProductsResponse = await axios.get("/api/product/showAllProducts")
             if (ProductsResponse?.data?.success) {
                 setTotalProducts(ProductsResponse.data.totalProducts)
             }
